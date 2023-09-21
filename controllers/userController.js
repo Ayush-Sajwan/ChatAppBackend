@@ -57,10 +57,11 @@ const setAvatar=async (req,res,next)=>{
         const id=req.params.id;
         const {image}=req.body;
 
-        const user=await User.findOneAndUpdate({_id:id},{
+        const user1=await User.findOneAndUpdate({_id:id},{
             isAvatarImageSet:true,
             avatarImage:image
         });
+        const user=await User.findOne({_id:id});
 
         res.json({user,isSet:true});
 
